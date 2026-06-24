@@ -1,0 +1,62 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://cmkp0lal1e7bh"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_6blcb"]
+var/target_position/name = &"target_position"
+var/target_position/type = 5
+var/target_position/value = Vector2(0, 0)
+var/target_position/hint = 0
+var/target_position/hint_string = ""
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+var/aniamted_sprite/name = &"aniamted_sprite"
+var/aniamted_sprite/type = 24
+var/aniamted_sprite/hint = 0
+var/aniamted_sprite/hint_string = ""
+var/attack_finished/name = &"attack_finished"
+var/attack_finished/type = 1
+var/attack_finished/value = false
+var/attack_finished/hint = 0
+var/attack_finished/hint_string = ""
+var/hit/name = &"hit"
+var/hit/type = 1
+var/hit/value = false
+var/hit/hint = 0
+var/hit/hint_string = ""
+
+[sub_resource type="BBNode" id="BBNode_kih32"]
+saved_value = NodePath("HitAnimation")
+resource_name = "HitAnimation"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_dgsm6"]
+animation_player = SubResource("BBNode_kih32")
+animation_name = &"Hit"
+
+[sub_resource type="BBNode" id="BBNode_dgsm6"]
+saved_value = NodePath("HitAnimation")
+resource_name = "HitAnimation"
+
+[sub_resource type="BTAwaitAnimation" id="BTAwaitAnimation_kbu0v"]
+animation_player = SubResource("BBNode_dgsm6")
+animation_name = &"Hit"
+
+[sub_resource type="BBVariant" id="BBVariant_kbu0v"]
+type = 1
+saved_value = false
+resource_name = "false"
+
+[sub_resource type="BTSetVar" id="BTSetVar_u3bul"]
+variable = &"hit"
+value = SubResource("BBVariant_kbu0v")
+
+[sub_resource type="BTSequence" id="BTSequence_kbu0v"]
+children = [SubResource("BTPlayAnimation_dgsm6"), SubResource("BTAwaitAnimation_kbu0v"), SubResource("BTSetVar_u3bul")]
+
+[sub_resource type="BTSelector" id="BTSelector_yuctj"]
+children = [SubResource("BTSequence_kbu0v")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_6blcb")
+root_task = SubResource("BTSelector_yuctj")
+resource_local_to_scene = true

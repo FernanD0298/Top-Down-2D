@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AudioData" format=3 uid="uid://cciisy8rgwra"]
+
+[ext_resource type="AudioStream" uid="uid://ykeccgh46jno" path="res://assets/audio/hammer_attack.mp3" id="1_a5gb8"]
+[ext_resource type="Script" uid="uid://b5c7mwsmj7ayr" path="res://assets/audio/audio_data.gd" id="1_rp25d"]
+[ext_resource type="AudioStream" uid="uid://tw6vdfgopr40" path="res://assets/audio/sword_slice.mp3" id="1_s4iwk"]
+[ext_resource type="AudioStream" uid="uid://btl8fvhyodmre" path="res://assets/audio/explosion.mp3" id="2_0e7qw"]
+[ext_resource type="AudioStream" uid="uid://bhabpf8lhfojc" path="res://assets/audio/hurt.mp3" id="2_ggtvv"]
+[ext_resource type="AudioStream" uid="uid://ch3mbi5opoqdd" path="res://assets/audio/walk_on_grass.mp3" id="2_qk54q"]
+
+[resource]
+script = ExtResource("1_rp25d")
+walk_sound = ExtResource("2_qk54q")
+hammer_attack_sound = ExtResource("1_a5gb8")
+attack_sound = ExtResource("1_s4iwk")
+hurt_sound = ExtResource("2_ggtvv")
+explosion_sound = ExtResource("2_0e7qw")
+metadata/_custom_type_script = "uid://b5c7mwsmj7ayr"

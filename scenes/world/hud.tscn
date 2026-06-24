@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://8wd8slmqi2h2"]
+
+[ext_resource type="Script" uid="uid://bpu8masxj7ne2" path="res://scenes/world/hud.gd" id="1_6r5nb"]
+[ext_resource type="Texture2D" uid="uid://dhvowyr0cysmq" path="res://assets/sprites/UI/hearth_empty.png" id="2_16xxk"]
+[ext_resource type="Texture2D" uid="uid://dp1jbrlk6tdcj" path="res://assets/sprites/Tiny Swords (Free Pack)/Units/Red Units/Warrior/enemy_icon.png" id="3_16xxk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_as07y"]
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=2099089614]
+script = ExtResource("1_6r5nb")
+
+[node name="HearthContainer" type="HBoxContainer" parent="." unique_id=1453004466]
+offset_right = 96.0
+offset_bottom = 16.0
+scale = Vector2(3, 3)
+
+[node name="Hearth" type="TextureRect" parent="HearthContainer" unique_id=2136670582]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_16xxk")
+stretch_mode = 2
+
+[node name="Hearth2" type="TextureRect" parent="HearthContainer" unique_id=534205582]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_16xxk")
+stretch_mode = 2
+
+[node name="Hearth3" type="TextureRect" parent="HearthContainer" unique_id=132043282]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_16xxk")
+stretch_mode = 2
+
+[node name="Hearth4" type="TextureRect" parent="HearthContainer" unique_id=395746606]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_16xxk")
+stretch_mode = 2
+
+[node name="Hearth5" type="TextureRect" parent="HearthContainer" unique_id=84294381]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_16xxk")
+stretch_mode = 2
+
+[node name="EnemyCountContainer" type="HBoxContainer" parent="." unique_id=1271464183]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -129.0
+offset_bottom = 95.0
+grow_horizontal = 0
+
+[node name="EnemyCount" type="Label" parent="EnemyCountContainer" unique_id=1580553473]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_as07y")
+
+[node name="EnemySprite" type="TextureRect" parent="EnemyCountContainer" unique_id=753060810]
+layout_mode = 2
+texture = ExtResource("3_16xxk")
+stretch_mode = 2
+
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=974171803]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

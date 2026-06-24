@@ -1,0 +1,34 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://brkkhfrq4gc8k"]
+
+[ext_resource type="Script" uid="uid://bgcv1cun2tb84" path="res://ai/tasks/change_animation.gd" id="1_0we8d"]
+[ext_resource type="Script" uid="uid://b8c4rs0gky8h0" path="res://ai/tasks/move_to_target.gd" id="1_njbxj"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_6blcb"]
+var/target_position/name = &"target_position"
+var/target_position/type = 5
+var/target_position/value = Vector2(0, 0)
+var/target_position/hint = 0
+var/target_position/hint_string = ""
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+
+[sub_resource type="BTAction" id="BTAction_wgw8j"]
+script = ExtResource("1_0we8d")
+animation_name = "Run"
+
+[sub_resource type="BTAction" id="BTAction_njbxj"]
+script = ExtResource("1_njbxj")
+balckboard_target = "target_position"
+
+[sub_resource type="BTSequence" id="BTSequence_0we8d"]
+children = [SubResource("BTAction_wgw8j"), SubResource("BTAction_njbxj")]
+
+[sub_resource type="BTSelector" id="BTSelector_wgw8j"]
+children = [SubResource("BTSequence_0we8d")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_6blcb")
+root_task = SubResource("BTSelector_wgw8j")
+resource_local_to_scene = true

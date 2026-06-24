@@ -1,0 +1,75 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://3vtc6m6uqygm"]
+
+[ext_resource type="Script" uid="uid://ckqmvddnjite" path="res://ai/tasks/get_random_point.gd" id="1_0pcjh"]
+[ext_resource type="Script" uid="uid://bgcv1cun2tb84" path="res://ai/tasks/change_animation.gd" id="2_lx756"]
+[ext_resource type="Script" uid="uid://b8c4rs0gky8h0" path="res://ai/tasks/move_to_target.gd" id="3_lx756"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_6blcb"]
+var/target_position/name = &"target_position"
+var/target_position/type = 5
+var/target_position/value = Vector2(0, 0)
+var/target_position/hint = 0
+var/target_position/hint_string = ""
+var/navigation_region/name = &"navigation_region"
+var/navigation_region/type = 24
+var/navigation_region/hint = 0
+var/navigation_region/hint_string = ""
+var/bb_owner/name = &"bb_owner"
+var/bb_owner/type = 24
+var/bb_owner/hint = 0
+var/bb_owner/hint_string = ""
+var/is_walking/name = &"is_walking"
+var/is_walking/type = 1
+var/is_walking/value = false
+var/is_walking/hint = 0
+var/is_walking/hint_string = ""
+
+[sub_resource type="BTWait" id="BTWait_6blcb"]
+
+[sub_resource type="BTAction" id="BTAction_xa12x"]
+script = ExtResource("1_0pcjh")
+
+[sub_resource type="BTAction" id="BTAction_x08bg"]
+script = ExtResource("2_lx756")
+animation_name = "Run"
+
+[sub_resource type="BBVariant" id="BBVariant_lx756"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTSetVar" id="BTSetVar_x08bg"]
+variable = &"is_walking"
+value = SubResource("BBVariant_lx756")
+
+[sub_resource type="BTAction" id="BTAction_lx756"]
+script = ExtResource("3_lx756")
+min_distance = 30.0
+balckboard_target = "target_position"
+
+[sub_resource type="BBVariant" id="BBVariant_rbrj2"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTSetVar" id="BTSetVar_sd7as"]
+variable = &"is_walking"
+value = SubResource("BBVariant_rbrj2")
+
+[sub_resource type="BTAction" id="BTAction_rbrj2"]
+script = ExtResource("2_lx756")
+animation_name = "Idle"
+
+[sub_resource type="BTWait" id="BTWait_x08bg"]
+duration = 2.0
+
+[sub_resource type="BTSequence" id="BTSequence_lx756"]
+children = [SubResource("BTWait_6blcb"), SubResource("BTAction_xa12x"), SubResource("BTAction_x08bg"), SubResource("BTSetVar_x08bg"), SubResource("BTAction_lx756"), SubResource("BTSetVar_sd7as"), SubResource("BTAction_rbrj2"), SubResource("BTWait_x08bg")]
+
+[sub_resource type="BTSelector" id="BTSelector_0pcjh"]
+children = [SubResource("BTSequence_lx756")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_6blcb")
+root_task = SubResource("BTSelector_0pcjh")
+resource_local_to_scene = true

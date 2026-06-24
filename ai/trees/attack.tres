@@ -1,0 +1,67 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://cvdrxb32cyqp0"]
+
+[ext_resource type="Script" uid="uid://bgcv1cun2tb84" path="res://ai/tasks/change_animation.gd" id="1_cp5ei"]
+[ext_resource type="Script" uid="uid://dkb6lkmhwvvl0" path="res://ai/tasks/await_animated_sprite.gd" id="2_6ewyl"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_6blcb"]
+var/target_position/name = &"target_position"
+var/target_position/type = 5
+var/target_position/value = Vector2(0, 0)
+var/target_position/hint = 0
+var/target_position/hint_string = ""
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+var/aniamted_sprite/name = &"aniamted_sprite"
+var/aniamted_sprite/type = 24
+var/aniamted_sprite/hint = 0
+var/aniamted_sprite/hint_string = ""
+var/attack_finished/name = &"attack_finished"
+var/attack_finished/type = 1
+var/attack_finished/value = false
+var/attack_finished/hint = 0
+var/attack_finished/hint_string = ""
+
+[sub_resource type="BBVariant" id="BBVariant_6ewyl"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTSetVar" id="BTSetVar_1qnrn"]
+variable = &"attack_finished"
+value = SubResource("BBVariant_6ewyl")
+
+[sub_resource type="BTAction" id="BTAction_wgw8j"]
+script = ExtResource("1_cp5ei")
+animation_name = "Attack"
+
+[sub_resource type="BTAction" id="BTAction_1qnrn"]
+script = ExtResource("2_6ewyl")
+bb_animated_sprite_name = "aniamted_sprite"
+
+[sub_resource type="BTAction" id="BTAction_yuctj"]
+script = ExtResource("1_cp5ei")
+animation_name = "Idle"
+
+[sub_resource type="BBVariant" id="BBVariant_1qnrn"]
+type = 1
+saved_value = false
+resource_name = "false"
+
+[sub_resource type="BTSetVar" id="BTSetVar_yuctj"]
+variable = &"attack_finished"
+value = SubResource("BBVariant_1qnrn")
+
+[sub_resource type="BTWait" id="BTWait_1qnrn"]
+
+[sub_resource type="BTSequence" id="BTSequence_1qnrn"]
+children = [SubResource("BTSetVar_1qnrn"), SubResource("BTAction_wgw8j"), SubResource("BTAction_1qnrn"), SubResource("BTAction_yuctj"), SubResource("BTSetVar_yuctj"), SubResource("BTWait_1qnrn")]
+
+[sub_resource type="BTSelector" id="BTSelector_yuctj"]
+children = [SubResource("BTSequence_1qnrn")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_6blcb")
+root_task = SubResource("BTSelector_yuctj")
+resource_local_to_scene = true

@@ -1,0 +1,329 @@
+[gd_scene format=3 uid="uid://cxi532aj25r5e"]
+
+[ext_resource type="Texture2D" uid="uid://dpfw3wf6cfoyw" path="res://assets/sprites/Tiny Swords (Free Pack)/Units/Red Units/Warrior/Warrior_Idle.png" id="1_7jwvu"]
+[ext_resource type="Script" uid="uid://c5u2aaokete63" path="res://scenes/enemy/enemy.gd" id="1_mhnji"]
+[ext_resource type="PackedScene" uid="uid://canga6tulihjf" path="res://components/hit_box.tscn" id="2_mhnji"]
+[ext_resource type="Resource" uid="uid://cciisy8rgwra" path="res://assets/audio/audio_data.tres" id="2_mn5ii"]
+[ext_resource type="Shader" uid="uid://cb16wrwegrhsh" path="res://assets/shaders/Hit.tres" id="2_mrhj7"]
+[ext_resource type="Texture2D" uid="uid://cmme10gixhml5" path="res://assets/sprites/Tiny Swords (Free Pack)/Units/Red Units/Warrior/Warrior_Attack1.png" id="2_qqf2c"]
+[ext_resource type="PackedScene" uid="uid://bkhdcjkswcwth" path="res://components/hurt_box.tscn" id="3_cyhfe"]
+[ext_resource type="Texture2D" uid="uid://7p2csjuspvao" path="res://assets/sprites/Tiny Swords (Free Pack)/Units/Red Units/Warrior/Warrior_Run.png" id="3_xmqof"]
+[ext_resource type="PackedScene" uid="uid://c8ode2nnprb7v" path="res://components/health_component.tscn" id="4_cskgf"]
+[ext_resource type="BehaviorTree" uid="uid://3vtc6m6uqygm" path="res://ai/trees/patrol.tres" id="7_cskgf"]
+[ext_resource type="Script" uid="uid://d34y066vp22ho" path="res://scenes/enemy/enemy_state_machine.gd" id="7_sdw4j"]
+[ext_resource type="Script" uid="uid://bj8kbmk5pyq1k" path="res://scenes/enemy/states/enemy_patrol_state.gd" id="8_xmqof"]
+[ext_resource type="BehaviorTree" uid="uid://brkkhfrq4gc8k" path="res://ai/trees/chase.tres" id="9_xv37b"]
+[ext_resource type="Script" uid="uid://bvcg4s6pp6x3e" path="res://scenes/enemy/states/enemy_chase_state.gd" id="11_lcfr4"]
+[ext_resource type="BehaviorTree" uid="uid://cvdrxb32cyqp0" path="res://ai/trees/attack.tres" id="12_82dc0"]
+[ext_resource type="Script" uid="uid://dmpcax8hkkfb4" path="res://scenes/enemy/states/enemy_attack_state.gd" id="14_mihlc"]
+[ext_resource type="Script" uid="uid://o17oa5fynfe3" path="res://scenes/enemy/states/enemy_hurt_state.gd" id="15_jxll1"]
+[ext_resource type="BehaviorTree" uid="uid://cmkp0lal1e7bh" path="res://ai/trees/hurt.tres" id="16_os0cu"]
+[ext_resource type="Script" uid="uid://bll7aapcxo7gb" path="res://scenes/enemy/states/enemy_dead_state.gd" id="18_fxwhd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_os0cu"]
+resource_local_to_scene = true
+shader = ExtResource("2_mrhj7")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se7lr"]
+atlas = ExtResource("2_qqf2c")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ar6v"]
+atlas = ExtResource("2_qqf2c")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reimg"]
+atlas = ExtResource("2_qqf2c")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qdnf"]
+atlas = ExtResource("2_qqf2c")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmqof"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv37b"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdw4j"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcfr4"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82dc0"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqf2c"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mihlc"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxll1"]
+atlas = ExtResource("1_7jwvu")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrhj7"]
+atlas = ExtResource("3_xmqof")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os0cu"]
+atlas = ExtResource("3_xmqof")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxwhd"]
+atlas = ExtResource("3_xmqof")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn5ii"]
+atlas = ExtResource("3_xmqof")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n86t7"]
+atlas = ExtResource("3_xmqof")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qggc"]
+atlas = ExtResource("3_xmqof")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mrhj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se7lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ar6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reimg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qdnf")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmqof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv37b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdw4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcfr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82dc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqf2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mihlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxll1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrhj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxwhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn5ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n86t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qggc")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhnji"]
+size = Vector2(39, 33)
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_sdw4j"]
+var/nav_region/name = &"nav_region"
+var/nav_region/type = 24
+var/nav_region/hint = 0
+var/nav_region/hint_string = ""
+var/bb_owner/name = &"bb_owner"
+var/bb_owner/type = 24
+var/bb_owner/hint = 0
+var/bb_owner/hint_string = ""
+resource_local_to_scene = true
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_qqf2c"]
+resource_local_to_scene = true
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_mihlc"]
+resource_local_to_scene = true
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_jxll1"]
+resource_local_to_scene = true
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_mrhj7"]
+resource_local_to_scene = true
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_fxwhd"]
+
+[sub_resource type="BTWait" id="BTWait_fxwhd"]
+
+[sub_resource type="BTSequence" id="BTSequence_mn5ii"]
+children = [SubResource("BTWait_fxwhd")]
+
+[sub_resource type="BTSelector" id="BTSelector_n86t7"]
+children = [SubResource("BTSequence_mn5ii")]
+
+[sub_resource type="BehaviorTree" id="BehaviorTree_mn5ii"]
+blackboard_plan = SubResource("BlackboardPlan_fxwhd")
+root_task = SubResource("BTSelector_n86t7")
+resource_local_to_scene = true
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_mn5ii"]
+resource_local_to_scene = true
+
+[sub_resource type="Animation" id="Animation_fxwhd"]
+resource_name = "Hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_mn5ii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n86t7"]
+_data = {
+&"Hit": SubResource("Animation_fxwhd"),
+&"RESET": SubResource("Animation_mn5ii")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2127913838]
+script = ExtResource("1_mhnji")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=352871954]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1290050738]
+material = SubResource("ShaderMaterial_os0cu")
+sprite_frames = SubResource("SpriteFrames_mrhj7")
+animation = &"Attack"
+frame = 3
+frame_progress = 1.0
+
+[node name="HitBox" parent="Pivot" unique_id=995696466 instance=ExtResource("2_mhnji")]
+scale = Vector2(0.87999976, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1561008586]
+
+[node name="HurtBox" parent="." unique_id=1150447591 node_paths=PackedStringArray("health") instance=ExtResource("3_cyhfe")]
+health = NodePath("../HealthComponent")
+
+[node name="HealthComponent" parent="." unique_id=1952793563 instance=ExtResource("4_cskgf")]
+max_health = 5
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=404267004]
+position = Vector2(1.5, 8.5)
+shape = SubResource("RectangleShape2D_mhnji")
+debug_color = Color(0, 0.6504301, 0.11109396, 0.41960785)
+
+[node name="LimboHSM" type="LimboHSM" parent="." unique_id=1077039674 node_paths=PackedStringArray("start_state")]
+blackboard_plan = SubResource("BlackboardPlan_sdw4j")
+script = ExtResource("7_sdw4j")
+start_state = NodePath("Patrol")
+
+[node name="Patrol" type="BTState" parent="LimboHSM" unique_id=932193992 node_paths=PackedStringArray("state_owner")]
+behavior_tree = ExtResource("7_cskgf")
+blackboard_plan = SubResource("BlackboardPlan_qqf2c")
+script = ExtResource("8_xmqof")
+state_owner = NodePath("../..")
+audio_data = ExtResource("2_mn5ii")
+
+[node name="Chase" type="BTState" parent="LimboHSM" unique_id=419134353 node_paths=PackedStringArray("state_owner")]
+behavior_tree = ExtResource("9_xv37b")
+blackboard_plan = SubResource("BlackboardPlan_mihlc")
+script = ExtResource("11_lcfr4")
+state_owner = NodePath("../..")
+min_dist = 85.0
+max_dist = 260.0
+audio_data = ExtResource("2_mn5ii")
+
+[node name="Attack" type="BTState" parent="LimboHSM" unique_id=117062528 node_paths=PackedStringArray("state_owner")]
+behavior_tree = ExtResource("12_82dc0")
+blackboard_plan = SubResource("BlackboardPlan_jxll1")
+script = ExtResource("14_mihlc")
+state_owner = NodePath("../..")
+min_dist = 200.0
+audio_data = ExtResource("2_mn5ii")
+
+[node name="Hurt" type="BTState" parent="LimboHSM" unique_id=2111694484 node_paths=PackedStringArray("state_owner")]
+behavior_tree = ExtResource("16_os0cu")
+blackboard_plan = SubResource("BlackboardPlan_mrhj7")
+script = ExtResource("15_jxll1")
+state_owner = NodePath("../..")
+audio_data = ExtResource("2_mn5ii")
+
+[node name="Dead" type="BTState" parent="LimboHSM" unique_id=1934434921 node_paths=PackedStringArray("state_owner")]
+behavior_tree = SubResource("BehaviorTree_mn5ii")
+blackboard_plan = SubResource("BlackboardPlan_mn5ii")
+script = ExtResource("18_fxwhd")
+state_owner = NodePath("../..")
+audio_data = ExtResource("2_mn5ii")
+
+[node name="HitAnimation" type="AnimationPlayer" parent="." unique_id=686358546]
+libraries/ = SubResource("AnimationLibrary_n86t7")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1394696288]
+max_distance = 500.0
