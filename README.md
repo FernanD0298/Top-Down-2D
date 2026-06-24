@@ -9,7 +9,7 @@ Implemente un sistema de inteligencia artificial utilizando Behavior Trees con L
 - Maquina de estados para control de comportamiento
 - Sistema de spawn de enemigos
 - Componentes reutilizables
-- - Health
+  - Health
   - Hitbox / Hurtbox
 - Efectos de sonido contextuales
 
@@ -19,7 +19,7 @@ Implemente un sistema de inteligencia artificial utilizando Behavior Trees con L
 #### Requisitos
 - Godot Engine (versión utilizada: 4.6.2)
 - Addon:
-- - LimboAI (incluido en la carpeta `addons/`)
+  - LimboAI (incluido en la carpeta `addons/`)
 
 #### Pasos
 1. Clonar el repositorio
